@@ -1,0 +1,33 @@
+Para utilizar o Connector_Lib.ex4 em seu indicador, siga os passos:
+
+1. Copie o arquivo Connector_Lib.ex4 para a pasta Libraries do MT4
+
+
+2. Coloque as seguintes declarações em seu indicador:
+
+#import "Connector_Lib.ex4"
+void put(const string ativo, const int periodo, const char modalidade, const int sinal_entrada, const string vps);
+void call(const string ativo, const int periodo, const char modalidade, const int sinal_entrada, const string vps);
+#import
+
+enum sinal {
+   MESMA_VELA = 0,
+   PROXIMA_VELA = 1 
+};
+
+enum modo {
+   MELHOR_PAYOUT = 'M',
+   BINARIAS = 'B',
+   DIGITAIS = 'D'
+};
+
+extern sinal SinalEntrada = MESMA_VELA;       // Entrar na
+extern modo Modalidade = MELHOR_PAYOUT;       // Modalidade
+extern string vps = "";       // IP:PORTA da VPS (caso utilize)
+
+
+3. Chame as funções de 'put' ou 'call' quando quiser de entrada no robô, exemplo:
+
+...
+put(Symbol(), Period(), Modalidade, SinalEntrada, vps);
+...

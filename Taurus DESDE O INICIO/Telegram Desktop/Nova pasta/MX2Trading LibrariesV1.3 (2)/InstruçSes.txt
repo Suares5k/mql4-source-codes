@@ -1,0 +1,37 @@
+Funcional para o MT4 e MT5
+
+Colocar o arquivo MX2Trading_library.ex4 dentro da pasta Libraries do MT4
+Colocar o arquivo MX2Trading_library.ex5 dentro da pasta Libraries do MT5
+
+Campos da função.
+par -> Sigla do para de moeda com 6 caracteres
+direcao -> CALL ou PUT em maiúsculo
+expiracao -> tempo de expiração da ordem em minutos
+NomeIndicador -> Nome do Indicador
+SinalTipo -> 0 para mesma vela e 1 para nova vela
+TipoExpiracao -> 0 para Tempo Fixo e 1 -> para retração na mesma vela
+TimeFrame -> Qual o timeframe está o gráfico M1 ou M5 ou M15 ou M30 ou H1
+mID -> Número único gerado para cada gráfico quando inicia o indicador no gráfico
+Corretora -> 0 -> todas as corretoras, 1 -> para IqOption e 2 -> para Binary
+
+Fazar a importação da library
+
+Para MT5
+// --------------------------------------------------------------------
+// MX2Trading library
+// --------------------------------------------------------------------
+#import "MX2Trading_library.ex5"
+   bool mx2trading(string par, string direcao, int expiracao, string sinalNome, int Signaltipo, int TipoExpiracao, string TimeFrame, string mID, string Corretora);
+#import
+
+Para MT4
+// --------------------------------------------------------------------
+// MX2Trading library
+// --------------------------------------------------------------------
+#import "MX2Trading_library.ex4"
+   bool mx2trading(string par, string direcao, int expiracao, string sinalNome, int Signaltipo, int TipoExpiracao, string TimeFrame, string mID, string Corretora);
+#import
+
+
+chamar a função para enviar o sinal.
+mx2trading(par, direcao, expiracao, sinalNome, Signaltipo, TipoExpiracao, TimeFrame, mID, Corretora);

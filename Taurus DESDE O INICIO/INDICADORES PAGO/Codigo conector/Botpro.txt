@@ -1,0 +1,95 @@
+﻿
+ Inicio  
+
+ Documentos  
+
+ BotPro – Library MQL4  
+ 
+ Enviando sinais para o BotPro
+
+
+
+Enviando sinais para o BotPro
+ 
+
+Deseja integrar o BotPro no seu indicador ou criar uma ferramenta específica no mt4 para o BotPro?
+
+Para isso, o BotPro facilita as coisas com sua library !
+
+Implementando a biblioteca#
+
+No cabeçalho do código mql4, precisamos importar a função “botpro” da library “botpro_lib.ex4”:
+
+
+#import “botpro_lib.ex4”
+int botpro(string direction, string expiration, string symbol, string value, string name, int bindig);
+#import
+
+Agora vamos entender como enviar um sinal.
+
+botpro(string direction, string expiration, string symbol, string value, string name, int bindig)
+•direction: “CALL” ou “PUT”
+•expiration: Número inteiro. ‘1’ significa expiração para 1 minuto. 
+•symbol: Use a função Symbol(). 
+•value: String contendo o valor. Pode ser também um valor em porcentagem da banca, ex: “2%”
+•name: String com o nome que será exibido no BotPro. .
+•bindig: Número inteiro :
+
+
+enum instrument {
+ DoBotPro= 3,
+ Binaria= 0,
+ Digital = 1,
+ MaiorPay =2
+ };
+
+Opções avançadas#
+
+Você pode definir a estratégia de recuperação ou alavancagem diretamente no seu indicador. Se você quiser fazer isso, pode substituir a função passada pela seguinte:
+
+#import “botpro_lib.ex4”
+int botpro(string direction, int expiration, int martingale, string symbol, string value, string name, int bindig, int mgtype, int mgmode, double mgmult);
+#import
+
+Nessa nova função são adicionados três campos a mais. Vamos entender quais são esses campos.
+•mgtype: Número inteiro que define a estratégia de alavancagem/ recuperação
+
+enum mg_type {
+ Nada= 0,
+ Martingale= 1,
+ Soros = 2,
+ SorosGale = 3,
+ Ciclos =4,
+ DoBotPro_ =5
+};
+•mgmode: Número inteiro que define o modo de recuperação (Proxima Vela / Proximo Sinal)
+
+enum mg_mode {
+ ProxVela= 0,
+ SuperGlobal= 1,
+ Global = 2,
+ Restrito = 3,
+};
+•mgmult: Número do tipo Double que define o multiplicador que o indicador vai utilizar na estratégia de recuperação/alavancagem. 
+
+ 
+
+
+ Atualizado em 14 de dezembro de 2020 
+
+Navegação Doc
+Sending signals to BotPro →      
+
+
+
+
+
+ 
+
+ 
+
+ 
+
+   
+
+
